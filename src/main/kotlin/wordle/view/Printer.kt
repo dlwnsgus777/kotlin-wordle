@@ -1,4 +1,4 @@
-package view
+package wordle.view
 
 class Printer {
 

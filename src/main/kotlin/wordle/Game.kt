@@ -1,6 +1,6 @@
 package wordle
 
-import view.Printer
+import wordle.view.Printer
 
 class Game {
 
