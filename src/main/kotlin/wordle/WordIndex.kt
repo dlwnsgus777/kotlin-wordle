@@ -3,11 +3,15 @@ package wordle
 import java.time.LocalDate
 
 data class WordIndex(
-    val value: Int
+    val value: Long
 ) {
     companion object {
         fun create(date: LocalDate, arraySize: Int): WordIndex {
-            throw Exception("not supported")
+            val baseDate: LocalDate = LocalDate.of(2021, 6, 19)
+
+            val result: Long = (date.toEpochDay() - baseDate.toEpochDay()) % arraySize
+
+            return WordIndex(result)
         }
     }
 }
