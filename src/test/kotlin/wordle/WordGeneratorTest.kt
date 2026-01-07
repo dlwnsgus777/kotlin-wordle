@@ -7,10 +7,10 @@ class WordGeneratorTest {
 
     @Test
     fun 오늘의_단어를_반환한다() {
-        // act
+        // arrange
         val wordGenerator = WordGenerator()
 
-        // arrange
+        // act
         val sut:Word = wordGenerator.generateAnswer();
 
         // assert
