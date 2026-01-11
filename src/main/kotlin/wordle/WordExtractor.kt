@@ -1,18 +1,15 @@
 package wordle
 
 class WordExtractor(
-    value: List<String>
+    private val value: List<String>
 ) {
     fun getSize(): Int {
-        return 0
+        return value.size
     }
 
     companion object {
-
         fun create(fileName: String): WordExtractor {
-            val list: List<String> = FileReader.read(fileName)
-
-            return WordExtractor(list)
+            return WordExtractor(FileReader.read(fileName))
         }
     }
 }
