@@ -16,7 +16,6 @@ class WordExtractorTest {
     fun test01() {
         // arrange
         val fileName = "testWord.txt"
-
         val extractor: WordExtractor = WordExtractor.create(fileName)
 
         // act
@@ -27,4 +26,18 @@ class WordExtractorTest {
     }
 
 
+    @Test
+    @DisplayName("인덱스에 맞는 단어를 추출한다")
+    fun test02() {
+        // arrange
+        val fileName = "testWord.txt"
+        val extractor: WordExtractor = WordExtractor.create(fileName)
+        val index = 0;
+
+        // act
+        val sut: Word = extractor.get(index)
+
+        // assert
+        assertThat(sut).isNotNull
+    }
 }
