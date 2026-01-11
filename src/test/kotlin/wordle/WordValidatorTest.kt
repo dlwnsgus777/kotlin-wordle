@@ -1,0 +1,33 @@
+package wordle
+
+import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EmptySource
+import org.junit.jupiter.params.provider.ValueSource
+
+class WordValidatorTest {
+    // TODO: 오류, 에러 용어 통일화 필요
+    @Test
+    @DisplayName("전달받은 문자열이 5글자가 아니면 오류가 발생한다")
+    fun test01() {
+        // arrange
+        val validator = WordValidator()
+        val word = Word("test")
+
+        // act & assert
+        assertThatThrownBy { validator.validate(word) }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    @DisplayName("전달받은 문자열이 빈 문자열이면 오류가 발생한다")
+    fun test02() {
+        // arrange
+        val validator = WordValidator()
+        val word = Word("")
+
+        // act & assert
+        assertThatThrownBy { validator.validate(word) }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+}
