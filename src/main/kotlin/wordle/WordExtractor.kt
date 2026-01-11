@@ -15,6 +15,10 @@ class WordExtractor(
         return Word(value.get(index))
     }
 
+    fun exists(word: Word): Boolean {
+        return value.contains(word.value)
+    }
+
     companion object {
         fun create(fileName: String): WordExtractor {
             return WordExtractor(FileReader.read(fileName))

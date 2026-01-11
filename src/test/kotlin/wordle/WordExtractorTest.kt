@@ -55,4 +55,34 @@ class WordExtractorTest {
         // act & assert
         assertThatThrownBy { extractor.get(index) }.isInstanceOf(IllegalArgumentException::class.java)
     }
+
+    @Test
+    @DisplayName("전달받은 단어가 존재하면 true를 반환한다.")
+    fun test04() {
+        // arrange
+        val fileName = "testWord.txt"
+        val extractor = WordExtractor.create(fileName)
+        val word = Word("devlife");
+
+        // act
+        val sut: Boolean = extractor.exists(word)
+
+        // assert
+        assertThat(sut).isTrue
+    }
+
+    @Test
+    @DisplayName("전달받은 단어가 존재하지 않으면 false를 반환한다.")
+    fun test05() {
+        // arrange
+        val fileName = "testWord.txt"
+        val extractor = WordExtractor.create(fileName)
+        val word = Word("notex");
+
+        // act
+        val sut: Boolean = extractor.exists(word)
+
+        // assert
+        assertThat(sut).isFalse
+    }
 }
