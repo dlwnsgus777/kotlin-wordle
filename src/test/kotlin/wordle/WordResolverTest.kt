@@ -18,7 +18,7 @@ class WordResolverTest {
             listOf(Result.CORRECT, Result.CORRECT, Result.CORRECT, Result.CORRECT, Result.CORRECT)
 
         // act
-        val sut: List<Result> = WordResolver().check(input, answer)
+        val sut: List<Result> = WordResolver(input).check(input, answer)
 
         // assert
         assertThat(sut).isEqualTo(expected)
@@ -36,7 +36,7 @@ class WordResolverTest {
             listOf(Result.CORRECT, Result.CORRECT, Result.CORRECT, Result.CORRECT, Result.CORRECT)
 
         // act
-        val sut: List<Result> = WordResolver().check(input, answer)
+        val sut: List<Result> = WordResolver(input).check(input, answer)
 
         // assert
         assertThat(sut).isEqualTo(expected)
