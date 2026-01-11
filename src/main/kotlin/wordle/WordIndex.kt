@@ -3,10 +3,10 @@ package wordle
 import java.time.LocalDate
 
 data class WordIndex(
-    val value: Long
+    val value: Int
 ) {
     companion object {
-        const val MIN_INDEX: Long = 0L
+        const val MIN_INDEX: Int = 0
         val BASE_DATE: LocalDate = LocalDate.of(2021, 6, 19)
 
         fun create(date: LocalDate, arraySize: Int): WordIndex {
@@ -23,8 +23,8 @@ data class WordIndex(
             return WordIndex(result)
         }
 
-        private fun calculate(date: LocalDate, arraySize: Int): Long {
-            return (date.toEpochDay() - BASE_DATE.toEpochDay()) % arraySize
+        private fun calculate(date: LocalDate, arraySize: Int): Int {
+            return ((date.toEpochDay() - BASE_DATE.toEpochDay()) % arraySize).toInt()
         }
     }
 }
