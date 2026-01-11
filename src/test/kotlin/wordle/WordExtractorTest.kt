@@ -1,6 +1,7 @@
 package wordle
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -41,5 +42,17 @@ class WordExtractorTest {
 
         // assert
         assertThat(sut).isEqualTo(expected)
+    }
+
+    @Test
+    @DisplayName("존재하지 않는 인덱스 값을 조회할 때는 오류가 발생한다.")
+    fun test03() {
+        // arrange
+        val fileName = "testWord.txt"
+        val extractor: WordExtractor = WordExtractor.create(fileName)
+        val index = 30;
+
+        // act & assert
+        assertThatThrownBy { extractor.get(index) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }

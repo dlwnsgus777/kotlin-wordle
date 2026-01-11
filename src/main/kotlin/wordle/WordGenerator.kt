@@ -10,18 +10,17 @@ import java.time.LocalDate
  *          - index 값을 가지고 있는
  *  - 오늘의 단어는 `words.txt`에 존재하는 단어여야한다.
  */
-class WordGenerator {
+class WordGenerator(
+    private val wordExtractor: WordExtractor
+) {
     fun generateAnswer(today: LocalDate, fileName: String): Word {
         // 1. 배열의 크기를 구한다.
-        val extractor: WordExtractor = WordExtractor.create(fileName)
-        val arraySize: Int = extractor.getSize()
+        val arraySize: Int = wordExtractor.getSize()
 
         // 2.오늘의 단어를 위한 index 추출한다.
         val wordIndex: WordIndex = WordIndex.create(today, arraySize)
 
         // 3. 오늘의 단어를 반환한다.
-        val word: Word = extractor.get(wordIndex.value.toInt())
-
-        return word
+        return wordExtractor.get(wordIndex.value)
     }
 }

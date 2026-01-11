@@ -8,6 +8,10 @@ class WordExtractor(
     }
 
     fun get(index: Int): Word {
+        if (index < 0 || index >= getSize()) {
+            throw IllegalArgumentException("Index out of range: $index")
+        }
+
         return Word(value.get(index))
     }
 
