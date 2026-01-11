@@ -47,10 +47,6 @@ class WordResolver(
         return result
     }
 
-    fun getCount(char: Char): Int {
-        return counter[char] ?: 0
-    }
-
     companion object {
         private fun init(word: Word): MutableMap<Char, Int> {
             val wordString: String = word.value
