@@ -23,4 +23,36 @@ class WordResolverTest {
         // assert
         assertThat(sut).isEqualTo(expected)
     }
+
+    @Test
+    @DisplayName("모든 단어가 틀렸을 때는 전부 ")
+    fun test02() {
+        // arrange
+        val input = Word("APPLE")
+
+        val answer = Word("APPLE")
+
+        val expected: List<Result> =
+            listOf(Result.CORRECT, Result.CORRECT, Result.CORRECT, Result.CORRECT, Result.CORRECT)
+
+        // act
+        val sut: List<Result> = WordResolver().check(input, answer)
+
+        // assert
+        assertThat(sut).isEqualTo(expected)
+    }
+
+    @Test
+    @DisplayName("입력된 문자열의 문자와 해당문자가 등장하는 횟수를 가져온다.")
+    fun test03() {
+        // arrange
+        val word = Word("APPLE")
+        val resolve = WordResolver(word)
+
+        // act
+        val sut = resolve.getCount('P')
+
+        // assert
+        assertThat(sut).isEqualTo(2)
+    }
 }
