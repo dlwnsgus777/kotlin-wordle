@@ -25,15 +25,14 @@ class WordResolverTest {
     }
 
     @Test
-    @DisplayName("모든 단어가 틀렸을 때는 전부 ")
+    @DisplayName("모든 단어가 틀렸을 때는 전부 ABSENT를 반환한다")
     fun test02() {
         // arrange
-        val input = Word("APPLE")
+        val input = Word("QWRTY")
 
         val answer = Word("APPLE")
 
-        val expected: List<Result> =
-            listOf(Result.CORRECT, Result.CORRECT, Result.CORRECT, Result.CORRECT, Result.CORRECT)
+        val expected: List<Result> = List(5) { Result.ABSENT }
 
         // act
         val sut: List<Result> = WordResolver(input).check(input, answer)
