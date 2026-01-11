@@ -9,6 +9,7 @@ class Game {
         @JvmStatic
         fun main(args: Array<String>) {
             Printer().introduce()
+            Scanner.input()
         }
     }
 }
