@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import java.io.File
 
-class WordExtractorTest {
+class FileReaderTest {
 
     @Test
     @DisplayName("외부로부터 입력 받은 파일을 읽어 옵니다.")
