@@ -1,5 +1,6 @@
 package wordle
 
+// TODO: WordExtractor에서 FileReader 의존 끊기
 class WordExtractor(
     private val value: List<String>
 ) {
