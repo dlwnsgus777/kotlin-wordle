@@ -16,7 +16,7 @@ class WordGeneratorTest {
         val expected: Word = Word("zin")
 
         // act
-        val sut:Word = wordGenerator.generateAnswer(today, fileName);
+        val sut:Word = wordGenerator.generateAnswer(today)
 
         // assert
         assertThat(sut).isEqualTo(expected)

@@ -13,7 +13,7 @@ import java.time.LocalDate
 class WordGenerator(
     private val wordExtractor: WordExtractor
 ) {
-    fun generateAnswer(today: LocalDate, fileName: String): Word {
+    fun generateAnswer(today: LocalDate): Word {
         // 1. 배열의 크기를 구한다.
         val arraySize: Int = wordExtractor.getSize()
 
