@@ -8,7 +8,7 @@ class WordResolver(
 
     // TODO answer 파라미터 없어도 됨
     fun check(input: Word, answer: Word): List<Result> {
-        val result = MutableList(5) { Result.ABSENT }
+        val result = MutableList(word.value.length) { Result.ABSENT }
         val answerArray = word.value.toCharArray()
         val charArray = input.value.toCharArray()
 
@@ -32,6 +32,10 @@ class WordResolver(
 
             // 아예 문자열이 존재하지 않을 때
             if (!counter.containsKey(charArray[it])) {
+                continue
+            }
+
+            if (counter.getValue(charArray[it]) == 0) {
                 continue
             }
 
