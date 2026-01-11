@@ -13,7 +13,7 @@ class WordResolverTest {
     @DisplayName("모든 단어가 맞을 때 정답을 판단합니다")
     fun test01(answer: Word, input: Word, expected: List<Result>) {
         // arrange & act
-        val sut: List<Result> = WordResolver(answer).check(input, answer)
+        val sut: List<Result> = WordResolver(answer).check(input)
 
         // assert
         assertThat(sut).isEqualTo(expected)

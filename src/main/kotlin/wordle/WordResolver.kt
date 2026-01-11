@@ -6,15 +6,14 @@ class WordResolver(
 ) {
     constructor(word: Word) : this(word, init(word))
 
-    // TODO answer 파라미터 없어도 됨
-    fun check(input: Word, answer: Word): List<Result> {
+    fun check(input: Word): List<Result> {
         val result = MutableList(word.value.length) { Result.ABSENT }
         val answerArray = word.value.toCharArray()
         val charArray = input.value.toCharArray()
 
         // 인덱스와 char가 같은지 판단
         for (it in charArray.indices) {
-            val checkValue = answer.check(it, charArray[it])
+            val checkValue = word.check(it, charArray[it])
 
             // result 같으면, word count 차감 및 결과 반환
             if (checkValue) {
