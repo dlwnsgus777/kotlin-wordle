@@ -2,7 +2,7 @@ package wordle
 
 import java.io.File
 
-class FileReader {
+object FileReader {
     fun read(name: String): List<String> {
         val file = readFile(name)
         val list = mutableListOf<String>()

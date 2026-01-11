@@ -10,7 +10,7 @@ class WordExtractor(
     companion object {
 
         fun create(fileName: String): WordExtractor {
-            val list: List<String> = FileReader().read(fileName)
+            val list: List<String> = FileReader.read(fileName)
 
             return WordExtractor(list)
         }

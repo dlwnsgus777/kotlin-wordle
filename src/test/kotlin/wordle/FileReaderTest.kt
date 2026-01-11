@@ -1,9 +1,7 @@
 package wordle
 
-import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.assertj.core.api.SoftAssertions
-import org.assertj.core.api.SoftAssertions.*
+import org.assertj.core.api.SoftAssertions.assertSoftly
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -16,7 +14,7 @@ class FileReaderTest {
         val name = "testWord.txt"
 
         // act
-        val sut = FileReader().read(name)
+        val sut = FileReader.read(name)
 
         // assert
         assertSoftly {
@@ -32,6 +30,6 @@ class FileReaderTest {
         val name = "notExistFile.txt"
 
         // act & assert
-        assertThatThrownBy { FileReader().read(name) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { FileReader.read(name) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
