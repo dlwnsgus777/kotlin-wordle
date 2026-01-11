@@ -11,11 +11,12 @@ class WordGeneratorTest {
         // arrange
         val wordGenerator = WordGenerator()
         val today: LocalDate = LocalDate.of(2021, 6, 19)
+        val fileName: String = "testWord.txt"
 
         val expected: Word = Word("zin")
 
         // act
-        val sut:Word = wordGenerator.generateAnswer(today);
+        val sut:Word = wordGenerator.generateAnswer(today, fileName);
 
         // assert
         assertThat(sut).isEqualTo(expected)
