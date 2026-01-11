@@ -10,6 +10,6 @@ package wordle
  */
 class WordGenerator {
     fun generateAnswer(): Word {
-        return Word()
+        return Word("temp")
     }
 }

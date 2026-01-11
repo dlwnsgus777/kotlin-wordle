@@ -32,12 +32,14 @@ class WordExtractorTest {
         // arrange
         val fileName = "testWord.txt"
         val extractor: WordExtractor = WordExtractor.create(fileName)
-        val index = 0;
+        val index = 1;
+
+        val expected: Word = Word("devlife")
 
         // act
         val sut: Word = extractor.get(index)
 
         // assert
-        assertThat(sut).isNotNull
+        assertThat(sut).isEqualTo(expected)
     }
 }

@@ -8,7 +8,7 @@ class WordExtractor(
     }
 
     fun get(index: Int): Word {
-        return Word()
+        return Word(value.get(index))
     }
 
     companion object {
