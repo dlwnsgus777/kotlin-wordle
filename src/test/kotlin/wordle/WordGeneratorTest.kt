@@ -13,7 +13,7 @@ class WordGeneratorTest {
         // arrange
         val wordGenerator = WordGenerator(wordExtractor)
         val today: LocalDate = LocalDate.of(2021, 6, 19)
-        val expected: Word = Word("zin")
+        val expected = Word("zin")
 
         // act
         val sut:Word = wordGenerator.generateAnswer(today)
