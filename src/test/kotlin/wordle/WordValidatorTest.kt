@@ -31,12 +31,13 @@ class WordValidatorTest {
         assertThatThrownBy { validator.validate(word) }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
-    @Test
+    @ParameterizedTest
+    @ValueSource(strings = ["12345", "ㄱㄴㄷㄹㅁ", "☆☆☆☆☆"])
     @DisplayName("전달받은 문자열은 영어가 아니면 오류가 발생한다")
-    fun test03() {
+    fun test03(input: String) {
         // arrange
         val validator = WordValidator()
-        val word = Word("12345")
+        val word = Word(input)
 
         // act & assert
         assertThatThrownBy { validator.validate(word) }
