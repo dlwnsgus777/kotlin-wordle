@@ -18,7 +18,7 @@ class WordResolverTest {
             listOf(Result.CORRECT, Result.CORRECT, Result.CORRECT, Result.CORRECT, Result.CORRECT)
 
         // act
-        val sut: List<Result> = WordResolver(input).check(input, answer)
+        val sut: List<Result> = WordResolver(answer).check(input, answer)
 
         // assert
         assertThat(sut).isEqualTo(expected)
@@ -35,7 +35,7 @@ class WordResolverTest {
         val expected: List<Result> = List(5) { Result.ABSENT }
 
         // act
-        val sut: List<Result> = WordResolver(input).check(input, answer)
+        val sut: List<Result> = WordResolver(answer).check(input, answer)
 
         // assert
         assertThat(sut).isEqualTo(expected)
@@ -53,5 +53,24 @@ class WordResolverTest {
 
         // assert
         assertThat(sut).isEqualTo(2)
+    }
+
+    @Test
+    @DisplayName("전달한 단어가 일부만 맞았을 때는 PRESENT를 포함하여 반환한다")
+    fun test04() {
+        // arrange
+        val input = Word("AECCB")
+
+        val answer = Word("APPLE")
+
+        val expected: List<Result> = listOf(
+            Result.CORRECT, Result.PRESENT, Result.ABSENT, Result.ABSENT, Result.ABSENT,
+        )
+
+        // act
+        val sut: List<Result> = WordResolver(answer).check(input, answer)
+
+        // assert
+        assertThat(sut).isEqualTo(expected)
     }
 }
