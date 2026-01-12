@@ -8,6 +8,6 @@ object Scanner {
         if (input == "") {
             throw IllegalArgumentException("입력값을 확인해주세요.")
         }
-        return input
+        return input.lowercase()
     }
 }
