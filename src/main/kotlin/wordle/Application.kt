@@ -1,15 +1,12 @@
 package wordle
 
-import wordle.view.Printer
-
-class Game {
+class Application {
 
     companion object {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            Printer().introduce()
-            Scanner.input()
+            GameMachine(6).start()
         }
     }
 }
