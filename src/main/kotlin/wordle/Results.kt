@@ -14,4 +14,8 @@ data class Results(
         }
         return builder.toString()
     }
+
+    fun isAnswer(): Boolean {
+        return values.all { it == Result.CORRECT }
+    }
 }
