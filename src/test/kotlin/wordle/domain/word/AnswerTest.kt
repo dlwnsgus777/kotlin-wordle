@@ -17,7 +17,7 @@ class AnswerTest {
         expected: List<Result>,
     ) {
         // arrange & act
-        val sut: List<Result> = Answer(answer).resolve(input).values
+        val sut: List<Result> = Answer(answer).verify(input).values
 
         // assert
         assertThat(sut).isEqualTo(expected)

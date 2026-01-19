@@ -6,7 +6,7 @@ import wordle.domain.result.Results
 class Answer(
     private val word: Word,
 ) {
-    fun resolve(guess: Word): Results {
+    fun verify(guess: Word): Results {
         val result = initResult(word.length())
         val answer = word.toCharArray()
         val guessChars = guess.toCharArray()
@@ -46,7 +46,7 @@ class Answer(
     ) {
         for (i in guess.indices) {
             if (answer[i] == '_') continue
-            if (counter[guess[i]] ?: 0 <= 0) continue
+            if ((counter[guess[i]] ?: 0) <= 0) continue
             decrementCounter(guess[i], counter)
             result[i] = Result.PRESENT
         }

@@ -8,6 +8,6 @@ class Wordle(
     private val answer: Answer,
 ) {
     fun round(word: Word): Results {
-        return answer.resolve(word)
+        return answer.verify(word)
     }
 }
