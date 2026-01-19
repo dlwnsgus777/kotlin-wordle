@@ -14,10 +14,10 @@ object FileReader {
 
     private fun readFile(name: String): File {
         val classLoader = javaClass.classLoader
-        val resource = classLoader.getResource(name) ?: throw IllegalArgumentException("File does not exist: $name")
+        val resource = classLoader.getResource(name) ?: throw IllegalArgumentException("파일이 존재하지 않습니다: $name")
         val result = File(resource.file)
         if (!result.exists()) {
-            throw IllegalArgumentException("File does not exist: $name")
+            throw IllegalArgumentException("파일이 존재하지 않습니다: $name")
         }
         return result
     }

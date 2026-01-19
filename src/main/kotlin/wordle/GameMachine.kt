@@ -11,16 +11,15 @@ class GameMachine(
     fun start() {
         // 오늘 단어를 단어장에서 추출
         val fileReader = FileReader.read("words.txt")
-        val extractor: WordExtractor = WordExtractor(fileReader)
+        val extractor = WordExtractor(fileReader)
         val wordGenerator = WordGenerator(extractor)
         val todayWord: Word = wordGenerator.generateAnswer(LocalDate.now())
-        println(todayWord.value)
 
         // 소개 하기
         Printer.introduce()
 
         // Wordle.round 호출하기
-        var currentCount: Int = 0
+        var currentCount = 0
         val wordleResults = WordleResults()
         while (currentCount < count) {
             currentCount++
@@ -37,7 +36,7 @@ class GameMachine(
                 continue
             }
 
-            val resolver: WordResolver = WordResolver(todayWord)
+            val resolver = WordResolver(todayWord)
             val results: Results = Wordle(resolver).round(input)
             wordleResults.add(results)
 
