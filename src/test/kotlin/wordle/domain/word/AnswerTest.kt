@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import wordle.domain.result.Result
 
-class WordResolverTest {
+class AnswerTest {
     @ParameterizedTest
     @MethodSource("expected")
     @DisplayName("모든 단어가 맞을 때 정답을 판단합니다")
@@ -17,7 +17,7 @@ class WordResolverTest {
         expected: List<Result>,
     ) {
         // arrange & act
-        val sut: List<Result> = WordResolver(answer).check(input)
+        val sut: List<Result> = Answer(answer).resolve(input).values
 
         // assert
         assertThat(sut).isEqualTo(expected)

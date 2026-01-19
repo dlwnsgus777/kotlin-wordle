@@ -2,10 +2,10 @@ package wordle.application
 
 import wordle.domain.result.Results
 import wordle.domain.result.WordleResults
+import wordle.domain.word.Answer
 import wordle.domain.word.Word
 import wordle.domain.word.WordExtractor
 import wordle.domain.word.WordGenerator
-import wordle.domain.word.WordResolver
 import wordle.domain.word.WordValidationException
 import wordle.domain.word.WordValidator
 import wordle.infrastructure.FileReader
@@ -21,23 +21,22 @@ class GameMachine(
     private val validator = WordValidator(extractor)
 
     fun start() {
-        val todayWord: Word = getTodayWord()
+        val answer = getAnswer()
         Printer.introduce()
-        println(todayWord.value)
 
-        val (currentCount, wordleResults) = playAllRounds(todayWord)
+        val (currentCount, wordleResults) = playAllRounds(answer)
 
         Printer.result(count, currentCount, wordleResults.display())
     }
 
-    private fun playAllRounds(todayWord: Word): Pair<Int, WordleResults> {
+    private fun playAllRounds(answer: Answer): Pair<Int, WordleResults> {
         var currentCount = 0
         val wordleResults = WordleResults()
 
         while (currentCount < count) {
             currentCount++
 
-            val isCorrect = playRound(todayWord, wordleResults)
+            val isCorrect = playRound(answer, wordleResults)
             if (isCorrect) break
 
             Printer.viewTile(wordleResults.display())
@@ -47,7 +46,7 @@ class GameMachine(
     }
 
     private fun playRound(
-        todayWord: Word,
+        answer: Answer,
         wordleResults: WordleResults,
     ): Boolean {
         Printer.requestInput()
@@ -59,15 +58,15 @@ class GameMachine(
             return false
         }
 
-        val resolver = WordResolver(todayWord)
-        val results: Results = Wordle(resolver).round(input)
+        val results: Results = Wordle(answer).round(input)
         wordleResults.add(results)
 
         return results.isAnswer()
     }
 
-    private fun getTodayWord(): Word {
-        return WordGenerator(extractor).generateAnswer(LocalDate.now())
+    private fun getAnswer(): Answer {
+        val word = WordGenerator(extractor).generateAnswer(LocalDate.now())
+        return Answer(word)
     }
 
     private fun createExtractor(fileName: String): WordExtractor {
