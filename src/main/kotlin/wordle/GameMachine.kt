@@ -5,53 +5,61 @@ import java.time.LocalDate
 
 
 class GameMachine(
+    fileName: String,
     private val count: Int
 ) {
+    private val extractor: WordExtractor = createExtractor(fileName)
+    private val validator = WordValidator(extractor)
 
     fun start() {
-        // 오늘 단어를 단어장에서 추출
-        val fileReader = FileReader.read("words.txt")
-        val extractor = WordExtractor(fileReader)
-        val wordGenerator = WordGenerator(extractor)
-        val todayWord: Word = wordGenerator.generateAnswer(LocalDate.now())
-
-        // 소개 하기
+        val todayWord: Word = getTodayWord()
         Printer.introduce()
+        println(todayWord.value)
 
-        // Wordle.round 호출하기
+        val (currentCount, wordleResults) = playAllRounds(todayWord)
+
+        Printer.result(count, currentCount, wordleResults.display())
+    }
+
+    private fun playAllRounds(todayWord: Word): Pair<Int, WordleResults> {
         var currentCount = 0
         val wordleResults = WordleResults()
+
         while (currentCount < count) {
             currentCount++
 
-            // TODO: Printer랑 Scanner를 합친 객체가 있으면 어떨지
-            // 입력 요청 메세지 (Scanner vs Printer)
-            Printer.requestInput()
-            // 게임머신에서 사용자 입력 받기
-            val input = Word(Scanner.input())
-            // 입력값 검증하기
-            try {
-                WordValidator(extractor).validate(input)
-            } catch (e: Exception) {
-                continue
-            }
+            val isCorrect = playRound(todayWord, wordleResults)
+            if (isCorrect) break
 
-            val resolver = WordResolver(todayWord)
-            val results: Results = Wordle(resolver).round(input)
-            wordleResults.add(results)
-
-            // 게임 머신이 게임 진행 여부 판단하기
-            if (results.isAnswer()) {
-                break
-            }
-
-            // TODO: 마지막 판이면 viewTile 호출 X
             Printer.viewTile(wordleResults.display())
         }
 
-        // 최종 결과 출력하기
-        // TODO: Printer를 이용해 결과 출력하기
-        Printer.result(count, currentCount, wordleResults.display())
+        return Pair(currentCount, wordleResults)
+    }
+
+    private fun playRound(todayWord: Word, wordleResults: WordleResults): Boolean {
+        Printer.requestInput()
+        val input = Word(Scanner.input())
+
+        try {
+            validator.validate(input)
+        } catch (e: Exception) {
+            return false
+        }
+
+        val resolver = WordResolver(todayWord)
+        val results: Results = Wordle(resolver).round(input)
+        wordleResults.add(results)
+
+        return results.isAnswer()
+    }
+
+    private fun getTodayWord(): Word {
+        return WordGenerator(extractor).generateAnswer(LocalDate.now())
+    }
+
+    private fun createExtractor(fileName: String): WordExtractor {
+        return WordExtractor(FileReader.read(fileName))
     }
 
 }

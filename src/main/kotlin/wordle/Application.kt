@@ -6,7 +6,7 @@ class Application {
 
         @JvmStatic
         fun main(args: Array<String>) {
-            GameMachine(6).start()
+            GameMachine("words.txt", 6).start()
         }
     }
 }
