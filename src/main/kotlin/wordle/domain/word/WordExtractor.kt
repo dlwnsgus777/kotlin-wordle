@@ -1,8 +1,10 @@
-package wordle
+package wordle.domain.word
+
+import wordle.infrastructure.FileReader
 
 // TODO: WordExtractor에서 FileReader 의존 끊기
 class WordExtractor(
-    private val value: List<String>
+    private val value: List<String>,
 ) {
     fun getSize(): Int {
         return value.size

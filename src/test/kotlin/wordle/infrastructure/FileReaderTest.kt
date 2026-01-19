@@ -1,4 +1,4 @@
-package wordle
+package wordle.infrastructure
 
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.assertj.core.api.SoftAssertions.assertSoftly
@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
 class FileReaderTest {
-
     @Test
     @DisplayName("읽어온 파일을 List<String> 형식으로 반환한다")
     fun test01() {

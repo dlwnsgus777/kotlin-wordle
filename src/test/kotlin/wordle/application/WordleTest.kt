@@ -1,11 +1,14 @@
-package wordle
+package wordle.application
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import wordle.domain.result.Result
+import wordle.domain.result.Results
+import wordle.domain.word.Word
+import wordle.domain.word.WordResolver
 
 class WordleTest {
-
     val answer = Word("apple")
     val resolver: WordResolver = WordResolver(answer)
 
@@ -16,9 +19,16 @@ class WordleTest {
         val wordle = Wordle(resolver)
         val word = Word("testt")
 
-        val expected: Results = Results(listOf(
-            Result.ABSENT, Result.PRESENT, Result.ABSENT, Result.ABSENT, Result.ABSENT
-        ))
+        val expected: Results =
+            Results(
+                listOf(
+                    Result.ABSENT,
+                    Result.PRESENT,
+                    Result.ABSENT,
+                    Result.ABSENT,
+                    Result.ABSENT,
+                ),
+            )
 
         // act
         val sut: Results = wordle.round(word)

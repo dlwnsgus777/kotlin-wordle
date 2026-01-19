@@ -1,4 +1,4 @@
-package wordle
+package wordle.domain.word
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -26,14 +26,13 @@ class WordExtractorTest {
         assertThat(sut).isEqualTo(2)
     }
 
-
     @Test
     @DisplayName("인덱스에 맞는 단어를 추출한다")
     fun test02() {
         // arrange
         val fileName = "testWord.txt"
         val extractor: WordExtractor = WordExtractor.create(fileName)
-        val index = 1;
+        val index = 1
 
         val expected: Word = Word("devlife")
 
@@ -50,7 +49,7 @@ class WordExtractorTest {
         // arrange
         val fileName = "testWord.txt"
         val extractor: WordExtractor = WordExtractor.create(fileName)
-        val index = 30;
+        val index = 30
 
         // act & assert
         assertThatThrownBy { extractor.get(index) }.isInstanceOf(IllegalArgumentException::class.java)
@@ -62,7 +61,7 @@ class WordExtractorTest {
         // arrange
         val fileName = "testWord.txt"
         val extractor = WordExtractor.create(fileName)
-        val word = Word("devlife");
+        val word = Word("devlife")
 
         // act
         val sut: Boolean = extractor.exists(word)
@@ -77,7 +76,7 @@ class WordExtractorTest {
         // arrange
         val fileName = "testWord.txt"
         val extractor = WordExtractor.create(fileName)
-        val word = Word("notex");
+        val word = Word("notex")
 
         // act
         val sut: Boolean = extractor.exists(word)

@@ -1,12 +1,21 @@
-package wordle
+package wordle.application
 
+import wordle.domain.result.Results
+import wordle.domain.result.WordleResults
+import wordle.domain.word.Word
+import wordle.domain.word.WordExtractor
+import wordle.domain.word.WordGenerator
+import wordle.domain.word.WordResolver
+import wordle.domain.word.WordValidationException
+import wordle.domain.word.WordValidator
+import wordle.infrastructure.FileReader
+import wordle.infrastructure.Scanner
 import wordle.view.Printer
 import java.time.LocalDate
 
-
 class GameMachine(
     fileName: String,
-    private val count: Int
+    private val count: Int,
 ) {
     private val extractor: WordExtractor = createExtractor(fileName)
     private val validator = WordValidator(extractor)
@@ -37,7 +46,10 @@ class GameMachine(
         return Pair(currentCount, wordleResults)
     }
 
-    private fun playRound(todayWord: Word, wordleResults: WordleResults): Boolean {
+    private fun playRound(
+        todayWord: Word,
+        wordleResults: WordleResults,
+    ): Boolean {
         Printer.requestInput()
         val input = Word(Scanner.input())
 
@@ -61,5 +73,4 @@ class GameMachine(
     private fun createExtractor(fileName: String): WordExtractor {
         return WordExtractor(FileReader.read(fileName))
     }
-
 }

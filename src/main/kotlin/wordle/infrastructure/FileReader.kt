@@ -1,4 +1,4 @@
-package wordle
+package wordle.infrastructure
 
 import java.io.File
 
