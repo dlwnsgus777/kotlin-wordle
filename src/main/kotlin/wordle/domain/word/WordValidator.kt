@@ -1,7 +1,7 @@
-package wordle
+package wordle.domain.word
 
 class WordValidator(
-    private val wordExtractor: WordExtractor
+    private val wordExtractor: WordExtractor,
 ) {
     fun validate(word: Word) {
         if (word.value.isBlank() || word.value.length != 5) {

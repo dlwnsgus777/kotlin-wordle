@@ -1,7 +1,6 @@
-package wordle
+package wordle.infrastructure
 
 object Scanner {
-
     fun input(): String {
         val input = readlnOrNull()?.trim() ?: ""
         if (input == "") {

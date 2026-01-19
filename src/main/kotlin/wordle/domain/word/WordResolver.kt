@@ -1,8 +1,10 @@
-package wordle
+package wordle.domain.word
+
+import wordle.domain.result.Result
 
 class WordResolver(
     private val word: Word,
-    private val counter: MutableMap<Char, Int>
+    private val counter: MutableMap<Char, Int>,
 ) {
     constructor(word: Word) : this(word, init(word))
 

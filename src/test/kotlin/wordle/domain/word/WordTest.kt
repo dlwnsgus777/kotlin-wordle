@@ -1,4 +1,4 @@
-package wordle
+package wordle.domain.word
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
@@ -9,11 +9,14 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 class WordTest {
-
     @ParameterizedTest
     @MethodSource("expectedWords")
     @DisplayName("입력된 인덱스와 입력된 캐릭터가, Word와 동일한지 판단한다")
-    fun test01(index: Int, char: Char, expected: Boolean) {
+    fun test01(
+        index: Int,
+        char: Char,
+        expected: Boolean,
+    ) {
         // arrange
         val input: Word = Word("APPLE")
 
@@ -36,9 +39,10 @@ class WordTest {
 
     companion object {
         @JvmStatic
-        fun expectedWords() = listOf(
-            Arguments.of(0, 'A', true),
-            Arguments.of(0, 'B', false),
-        )
+        fun expectedWords() =
+            listOf(
+                Arguments.of(0, 'A', true),
+                Arguments.of(0, 'B', false),
+            )
     }
 }
