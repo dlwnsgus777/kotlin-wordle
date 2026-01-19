@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test
 import java.time.LocalDate
 
 class WordGeneratorTest {
-    val fileName: String = "testWord.txt"
-    val wordExtractor = WordExtractor.create(fileName)
+    val testList = listOf("zin", "devlife")
+    val wordExtractor = WordExtractor(testList)
 
     @Test
     @DisplayName("오늘의 단어를 반환한다")

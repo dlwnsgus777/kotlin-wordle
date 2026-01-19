@@ -12,12 +12,13 @@ import org.junit.jupiter.api.Test
  *
  */
 class WordExtractorTest {
+    val testList = listOf("zin", "devlife")
+
     @Test
     @DisplayName("배열의 크기를 구한다.")
     fun test01() {
         // arrange
-        val fileName = "testWord.txt"
-        val extractor: WordExtractor = WordExtractor.create(fileName)
+        val extractor = WordExtractor(testList)
 
         // act
         val sut: Int = extractor.getSize()
@@ -30,8 +31,7 @@ class WordExtractorTest {
     @DisplayName("인덱스에 맞는 단어를 추출한다")
     fun test02() {
         // arrange
-        val fileName = "testWord.txt"
-        val extractor: WordExtractor = WordExtractor.create(fileName)
+        val extractor = WordExtractor(testList)
         val index = 1
 
         val expected: Word = Word("devlife")
@@ -47,8 +47,7 @@ class WordExtractorTest {
     @DisplayName("존재하지 않는 인덱스 값을 조회할 때는 오류가 발생한다.")
     fun test03() {
         // arrange
-        val fileName = "testWord.txt"
-        val extractor: WordExtractor = WordExtractor.create(fileName)
+        val extractor = WordExtractor(testList)
         val index = 30
 
         // act & assert
@@ -59,8 +58,7 @@ class WordExtractorTest {
     @DisplayName("전달받은 단어가 존재하면 true를 반환한다.")
     fun test04() {
         // arrange
-        val fileName = "testWord.txt"
-        val extractor = WordExtractor.create(fileName)
+        val extractor = WordExtractor(testList)
         val word = Word("devlife")
 
         // act
@@ -74,8 +72,7 @@ class WordExtractorTest {
     @DisplayName("전달받은 단어가 존재하지 않으면 false를 반환한다.")
     fun test05() {
         // arrange
-        val fileName = "testWord.txt"
-        val extractor = WordExtractor.create(fileName)
+        val extractor = WordExtractor(testList)
         val word = Word("notex")
 
         // act

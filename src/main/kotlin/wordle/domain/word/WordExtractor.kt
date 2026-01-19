@@ -1,8 +1,5 @@
 package wordle.domain.word
 
-import wordle.infrastructure.FileReader
-
-// TODO: WordExtractor에서 FileReader 의존 끊기
 class WordExtractor(
     private val value: List<String>,
 ) {
@@ -22,9 +19,4 @@ class WordExtractor(
         return value.contains(word.value)
     }
 
-    companion object {
-        fun create(fileName: String): WordExtractor {
-            return WordExtractor(FileReader.read(fileName))
-        }
-    }
 }
