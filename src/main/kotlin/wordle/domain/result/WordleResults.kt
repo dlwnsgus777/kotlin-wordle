@@ -7,11 +7,5 @@ class WordleResults(
         value.add(results)
     }
 
-    fun display(): String {
-        val stringBuilder: StringBuilder = StringBuilder()
-
-        value.forEach { stringBuilder.append(it.convert()).append("\n") }
-
-        return stringBuilder.toString().trim()
-    }
+    fun display(): String = value.joinToString("\n") { it.convert() }
 }
