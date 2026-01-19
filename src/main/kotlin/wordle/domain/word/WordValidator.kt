@@ -4,7 +4,7 @@ class WordValidator(
     private val wordExtractor: WordExtractor,
 ) {
     fun validate(word: Word) {
-        if (word.value.isBlank() || word.value.length != 5) {
+        if (word.isBlank() || word.length() != 5) {
             throw WordValidationException("입력값은 5글자여야 합니다.")
         }
 
