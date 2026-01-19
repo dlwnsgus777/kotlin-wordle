@@ -43,7 +43,7 @@ class GameMachine(
 
         try {
             validator.validate(input)
-        } catch (e: Exception) {
+        } catch (_: WordValidationException) {
             return false
         }
 
