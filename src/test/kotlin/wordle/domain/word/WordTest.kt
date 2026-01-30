@@ -21,7 +21,7 @@ class WordTest {
         val input: Word = Word("APPLE")
 
         // act
-        val sut: Boolean = input.check(index, char)
+        val sut: Boolean = input.matchesAt(index, char)
 
         // assert
         assertThat(sut).isEqualTo(expected)
@@ -34,7 +34,7 @@ class WordTest {
         val input: Word = Word("APPLE")
 
         // act & assert
-        assertThatThrownBy { input.check(10, 'A') }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy { input.matchesAt(10, 'A') }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
     companion object {

@@ -31,7 +31,7 @@ class Answer(
         counter: MutableMap<Char, Int>,
     ) {
         for (i in guess.indices) {
-            if (!word.check(i, guess[i])) continue
+            if (!word.matchesAt(i, guess[i])) continue
             result[i] = Result.CORRECT
             answer[i] = '_'
             decrementCounter(guess[i], counter)

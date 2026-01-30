@@ -9,7 +9,7 @@ data class Word(
 
     fun toCharArray(): CharArray = value.toCharArray()
 
-    fun check(
+    fun matchesAt(
         index: Int,
         char: Char,
     ): Boolean {
