@@ -16,9 +16,6 @@ object FileReader {
         val classLoader = javaClass.classLoader
         val resource = classLoader.getResource(name) ?: throw IllegalArgumentException("파일이 존재하지 않습니다: $name")
         val result = File(resource.file)
-        if (!result.exists()) {
-            throw IllegalArgumentException("파일이 존재하지 않습니다: $name")
-        }
         return result
     }
 }
