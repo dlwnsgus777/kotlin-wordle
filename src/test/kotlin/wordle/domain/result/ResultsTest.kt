@@ -4,7 +4,9 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.EnumSource
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.stream.Stream
 
 class ResultsTest {
     @Test
@@ -22,32 +24,27 @@ class ResultsTest {
     }
 
     @ParameterizedTest
-    @EnumSource(value = Result::class, mode = EnumSource.Mode.INCLUDE, names = ["CORRECT"])
-    @DisplayName("정답이라면 true를 반환합니다.")
-    fun test02(result: Result) {
+    @MethodSource("provideResultAndExpected")
+    @DisplayName("Result 타입에 따라 정답 여부를 반환합니다.")
+    fun test02(results: List<Result>, expected: Boolean) {
         // arrange
-        val results = List(3) { result }
         val input = Results(results)
 
         // act
         val sut: Boolean = input.isAnswer()
 
         // assert
-        assertThat(sut).isTrue
+        assertThat(sut).isEqualTo(expected)
     }
 
-    @ParameterizedTest
-    @EnumSource(value = Result::class, mode = EnumSource.Mode.EXCLUDE, names = ["CORRECT"])
-    @DisplayName("정답이 아니면 false를 반환합니다.")
-    fun test03(result: Result) {
-        // arrange
-        val results = List(3) { result }
-        val input = Results(results)
-
-        // act
-        val sut: Boolean = input.isAnswer()
-
-        // assert
-        assertThat(sut).isFalse
+    companion object {
+        @JvmStatic
+        fun provideResultAndExpected(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(listOf(Result.CORRECT, Result.CORRECT, Result.CORRECT), true),
+                Arguments.of(listOf(Result.ABSENT, Result.ABSENT, Result.ABSENT), false),
+                Arguments.of(listOf(Result.PRESENT, Result.PRESENT, Result.PRESENT), false)
+            )
+        }
     }
 }
