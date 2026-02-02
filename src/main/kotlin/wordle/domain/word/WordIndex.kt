@@ -13,13 +13,6 @@ data class WordIndex(
             date: LocalDate,
             arraySize: Int,
         ): WordIndex {
-            return extract(date, arraySize)
-        }
-
-        private fun extract(
-            date: LocalDate,
-            arraySize: Int,
-        ): WordIndex {
             val result = calculate(date, arraySize)
 
             if (result < MIN_INDEX) {
